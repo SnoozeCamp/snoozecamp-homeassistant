@@ -1,0 +1,95 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SnoozeCamp",
+        "description": "En ligne : {online_url} et un jeton de l'app SnoozeCamp (Paramètres). En local sur le Wi-Fi : {local_url} et le jeton du worker (Paramètres → Home Assistant en Wi-Fi).",
+        "data": {
+          "url": "URL du relay ou adresse du worker",
+          "token": "Jeton"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renouveler le jeton",
+        "data": {
+          "token": "Jeton"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Le jeton a été refusé.",
+      "cannot_connect": "Ni le relay ni le worker ne sont joignables."
+    },
+    "abort": {
+      "already_configured": "SnoozeCamp est déjà configuré.",
+      "reauth_successful": "Le jeton a été mis à jour."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Camping",
+        "data": {
+          "camp_hours": "Heures avant la fin du camping"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "range": {
+        "name": "Autonomie"
+      },
+      "battery": {
+        "name": "Batterie"
+      },
+      "charge_target": {
+        "name": "Charge cible"
+      },
+      "climate_target": {
+        "name": "Température cible"
+      },
+      "climate_remaining": {
+        "name": "Climat restant"
+      },
+      "camp_until": {
+        "name": "Fin du camping"
+      },
+      "read_at": {
+        "name": "Dernière mesure"
+      }
+    },
+    "binary_sensor": {
+      "charging": {
+        "name": "En charge"
+      },
+      "climate": {
+        "name": "Climat"
+      },
+      "worker": {
+        "name": "Worker"
+      },
+      "locked": {
+        "name": "Verrouillage"
+      }
+    },
+    "switch": {
+      "climate_switch": {
+        "name": "Climat"
+      },
+      "camp": {
+        "name": "Camping"
+      }
+    },
+    "number": {
+      "target": {
+        "name": "Température cible"
+      }
+    },
+    "button": {
+      "read": {
+        "name": "Lire maintenant"
+      }
+    }
+  }
+}

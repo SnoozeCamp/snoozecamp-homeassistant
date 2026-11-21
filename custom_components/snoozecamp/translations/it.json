@@ -1,0 +1,95 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SnoozeCamp",
+        "description": "Online: {online_url} e un token dall'app SnoozeCamp (Impostazioni). Locale nel Wi-Fi: {local_url} e il token del worker (Impostazioni → Home Assistant nel Wi-Fi).",
+        "data": {
+          "url": "URL del relay o indirizzo del worker",
+          "token": "Token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Rinnova il token",
+        "data": {
+          "token": "Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Il token è stato rifiutato.",
+      "cannot_connect": "Né il relay né il worker sono raggiungibili."
+    },
+    "abort": {
+      "already_configured": "SnoozeCamp è già configurato.",
+      "reauth_successful": "Il token è stato aggiornato."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Camping",
+        "data": {
+          "camp_hours": "Ore fino alla fine del camping"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "range": {
+        "name": "Autonomia"
+      },
+      "battery": {
+        "name": "Batteria"
+      },
+      "charge_target": {
+        "name": "Carica desiderata"
+      },
+      "climate_target": {
+        "name": "Temperatura desiderata"
+      },
+      "climate_remaining": {
+        "name": "Clima rimanente"
+      },
+      "camp_until": {
+        "name": "Fine del camping"
+      },
+      "read_at": {
+        "name": "Ultima lettura"
+      }
+    },
+    "binary_sensor": {
+      "charging": {
+        "name": "In carica"
+      },
+      "climate": {
+        "name": "Clima"
+      },
+      "worker": {
+        "name": "Worker"
+      },
+      "locked": {
+        "name": "Serratura"
+      }
+    },
+    "switch": {
+      "climate_switch": {
+        "name": "Clima"
+      },
+      "camp": {
+        "name": "Camping"
+      }
+    },
+    "number": {
+      "target": {
+        "name": "Temperatura desiderata"
+      }
+    },
+    "button": {
+      "read": {
+        "name": "Leggi ora"
+      }
+    }
+  }
+}

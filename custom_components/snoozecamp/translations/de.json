@@ -1,0 +1,95 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SnoozeCamp",
+        "description": "Online: {online_url} und ein Token aus der SnoozeCamp-App (Einstellungen). Lokal im WLAN: {local_url} und das Token aus dem Worker (Einstellungen → Home Assistant im WLAN).",
+        "data": {
+          "url": "Relay-URL oder Adresse des Workers",
+          "token": "Token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Token erneuern",
+        "data": {
+          "token": "Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Das Token wurde abgelehnt.",
+      "cannot_connect": "Weder Relay noch Worker waren erreichbar."
+    },
+    "abort": {
+      "already_configured": "SnoozeCamp ist schon eingerichtet.",
+      "reauth_successful": "Das Token wurde aktualisiert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Camping",
+        "data": {
+          "camp_hours": "Stunden bis das Camping endet"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "range": {
+        "name": "Reichweite"
+      },
+      "battery": {
+        "name": "Akku"
+      },
+      "charge_target": {
+        "name": "Zielladestand"
+      },
+      "climate_target": {
+        "name": "Solltemperatur"
+      },
+      "climate_remaining": {
+        "name": "Klima-Restzeit"
+      },
+      "camp_until": {
+        "name": "Camping endet"
+      },
+      "read_at": {
+        "name": "Letzter Stand"
+      }
+    },
+    "binary_sensor": {
+      "charging": {
+        "name": "Laden"
+      },
+      "climate": {
+        "name": "Klima"
+      },
+      "worker": {
+        "name": "Worker"
+      },
+      "locked": {
+        "name": "Schloss"
+      }
+    },
+    "switch": {
+      "climate_switch": {
+        "name": "Klima"
+      },
+      "camp": {
+        "name": "Camping"
+      }
+    },
+    "number": {
+      "target": {
+        "name": "Solltemperatur"
+      }
+    },
+    "button": {
+      "read": {
+        "name": "Stand jetzt lesen"
+      }
+    }
+  }
+}

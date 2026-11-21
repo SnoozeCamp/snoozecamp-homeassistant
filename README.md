@@ -1,0 +1,68 @@
+# SnoozeCamp for Home Assistant
+
+Home Assistant integration for [SnoozeCamp](https://snoozecamp.com): keeps the parking climatisation of a
+Volkswagen ID. running overnight and shows the vehicle's state. A SnoozeCamp worker (an Android phone with
+the SnoozeCamp worker app) is required.
+
+*Deutsch: siehe [unten](#deutsch).*
+
+## Installation
+
+### HACS (recommended)
+
+1. HACS → ⋮ → **Custom repositories** → add `https://github.com/SnoozeCamp/snoozecamp-homeassistant`,
+   category **Integration**.
+2. Search for **SnoozeCamp**, install it and restart Home Assistant.
+
+### Manual
+
+Copy `custom_components/snoozecamp` into your `config/custom_components/` folder and restart Home Assistant.
+
+## Setup
+
+**Settings → Devices & services → Add integration → SnoozeCamp.** There are two ways to connect:
+
+| Mode | URL | Token |
+|---|---|---|
+| **Online** | `https://app.snoozecamp.com` | Create one in the SnoozeCamp app under *Settings* |
+| **Local (Wi-Fi)** | `http://PHONE-IP:8765` | In the worker app under *Settings → Home Assistant on Wi-Fi* |
+
+Both offer the same entities. The local mode needs no internet and no server, but the phone and Home
+Assistant must be on the same network. It uses plain HTTP, so only use it on a network you trust, and give
+the phone a fixed IP address in your router.
+
+You can add both modes; each vehicle then appears twice.
+
+## Entities per vehicle
+
+| Type | Entities |
+|---|---|
+| Sensor | Range, battery, charge target, target temperature, climate time left, camping ends, last reading |
+| Binary sensor | Charging, climate running, worker online, lock (only for models whose VW app shows it) |
+| Switch | Climate (one run / stop), camping (duration in the integration options, default 8 hours) |
+| Number | Target temperature |
+| Button | Read status now |
+
+Locking and unlocking are not supported; the lock state is shown only.
+
+Changes arrive as a live stream, so states update within seconds after the worker has read the car.
+
+## Notes
+
+- The token is stored by Home Assistant. Anyone holding it can read the vehicle state and start or stop the
+  climatisation. Revoke it in the app (online) or create a new one in the worker (local) if it leaks.
+- Set a battery floor in the SnoozeCamp app; the camping mode stops the climatisation there.
+- SnoozeCamp is not affiliated with Volkswagen.
+
+## Deutsch
+
+SnoozeCamp hält die Standklimatisierung eines VW ID. über Nacht am Laufen. Diese Integration zeigt den
+Fahrzeugstand in Home Assistant und schaltet Klima und Camping.
+
+- **Installation:** HACS → ⋮ → *Benutzerdefinierte Repositories* →
+  `https://github.com/SnoozeCamp/snoozecamp-homeassistant` (Kategorie *Integration*), installieren,
+  Home Assistant neu starten.
+- **Online:** URL `https://app.snoozecamp.com`, Token aus der SnoozeCamp-App (Einstellungen).
+- **Lokal im WLAN:** URL `http://IP-DES-HANDYS:8765`, Token aus dem Worker (Einstellungen → Home Assistant im
+  WLAN). Unverschlüsselt, nur im eigenen Netz nutzen; dem Handy im Router eine feste IP geben.
+- Ver- und Entriegeln gibt es nicht, der Schlosszustand wird nur angezeigt.

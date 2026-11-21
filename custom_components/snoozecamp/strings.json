@@ -1,0 +1,95 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SnoozeCamp",
+        "description": "Online: {online_url} and a token from the SnoozeCamp app (Settings). Local on Wi-Fi: {local_url} and the token from the worker (Settings → Home Assistant on Wi-Fi).",
+        "data": {
+          "url": "Relay URL or worker address",
+          "token": "Token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renew the token",
+        "data": {
+          "token": "Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "The token was rejected.",
+      "cannot_connect": "Neither the relay nor the worker could be reached."
+    },
+    "abort": {
+      "already_configured": "SnoozeCamp is already set up.",
+      "reauth_successful": "The token was updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Camping",
+        "data": {
+          "camp_hours": "Hours until camping stops"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "range": {
+        "name": "Range"
+      },
+      "battery": {
+        "name": "Battery"
+      },
+      "charge_target": {
+        "name": "Charge target"
+      },
+      "climate_target": {
+        "name": "Target temperature"
+      },
+      "climate_remaining": {
+        "name": "Climate remaining"
+      },
+      "camp_until": {
+        "name": "Camping ends"
+      },
+      "read_at": {
+        "name": "Last reading"
+      }
+    },
+    "binary_sensor": {
+      "charging": {
+        "name": "Charging"
+      },
+      "climate": {
+        "name": "Climate"
+      },
+      "worker": {
+        "name": "Worker"
+      },
+      "locked": {
+        "name": "Lock"
+      }
+    },
+    "switch": {
+      "climate_switch": {
+        "name": "Climate"
+      },
+      "camp": {
+        "name": "Camping"
+      }
+    },
+    "number": {
+      "target": {
+        "name": "Target temperature"
+      }
+    },
+    "button": {
+      "read": {
+        "name": "Read status"
+      }
+    }
+  }
+}
