@@ -1,4 +1,4 @@
-"""Climate and camping. Both become commands on the relay."""
+"""Climate, camping and charging. All become commands on the relay or the worker."""
 
 from __future__ import annotations
 
@@ -23,7 +23,14 @@ async def async_setup_entry(hass, entry, async_add_entities):
             CampSwitch(coordinator, vehicle_id),
         ]
 
+    def build_charge(vehicle_id, vehicle):
+        # Charging needs worker 1.5.1. The switch appears once the vehicle offers it.
+        if "charge" not in (vehicle.get("capabilities") or []):
+            return []
+        return [ChargeSwitch(coordinator, vehicle_id)]
+
     listen_vehicles(coordinator, async_add_entities, build)
+    listen_vehicles(coordinator, async_add_entities, build_charge)
 
 
 class CommandSwitch(SnoozeEntity, SwitchEntity):
@@ -107,3 +114,24 @@ class CampSwitch(CommandSwitch):
 
     async def async_turn_off(self, **kwargs):
         await self._send("STOP_CAMPER_MODE", False)
+
+
+class ChargeSwitch(CommandSwitch):
+    def __init__(self, coordinator, vehicle_id):
+        super().__init__(coordinator, vehicle_id, "charge")
+        self._attr_translation_key = "charge"
+
+    @property
+    def is_on(self):
+        if self._optimistic is not None:
+            return self._optimistic
+        return bool(self.status().get("charging"))
+
+    def _matches_server(self) -> bool:
+        return bool(self.status().get("charging")) == self._optimistic
+
+    async def async_turn_on(self, **kwargs):
+        await self._send("START_CHARGING", True)
+
+    async def async_turn_off(self, **kwargs):
+        await self._send("STOP_CHARGING", False)

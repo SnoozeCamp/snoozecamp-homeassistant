@@ -39,7 +39,7 @@ You can add both modes; each vehicle then appears twice.
 |---|---|
 | Sensor | Range, battery, charge target, target temperature, climate time left, camping ends, last reading |
 | Binary sensor | Charging, climate running, worker online, lock (only for models whose VW app shows it) |
-| Switch | Climate (one run / stop), camping (duration in the integration options, default 8 hours) |
+| Switch | Climate (one run / stop), camping (duration in the integration options, default 8 hours), charging (start / stop, needs worker 1.5.1 and a plugged-in cable) |
 | Number | Target temperature |
 | Button | Read status now |
 
@@ -50,14 +50,14 @@ Changes arrive as a live stream, so states update within seconds after the worke
 ## Notes
 
 - The token is stored by Home Assistant. Anyone holding it can read the vehicle state and start or stop the
-  climatisation. Revoke it in the app (online) or create a new one in the worker (local) if it leaks.
+  climatisation or charging. Revoke it in the app (online) or create a new one in the worker (local) if it leaks.
 - Set a battery floor in the SnoozeCamp app; the camping mode stops the climatisation there.
 - SnoozeCamp is not affiliated with Volkswagen.
 
 ## Deutsch
 
 SnoozeCamp hält die Standklimatisierung eines VW ID. über Nacht am Laufen. Diese Integration zeigt den
-Fahrzeugstand in Home Assistant und schaltet Klima und Camping.
+Fahrzeugstand in Home Assistant und schaltet Klima, Camping und Laden (Laden ab Worker 1.5.1, Kabel muss stecken).
 
 - **Installation:** HACS → ⋮ → *Benutzerdefinierte Repositories* →
   `https://github.com/SnoozeCamp/snoozecamp-homeassistant` (Kategorie *Integration*), installieren,

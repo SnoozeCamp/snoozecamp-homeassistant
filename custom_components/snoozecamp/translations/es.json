@@ -79,6 +79,9 @@
       },
       "camp": {
         "name": "Camping"
+      },
+      "charge": {
+        "name": "Carga"
       }
     },
     "number": {
