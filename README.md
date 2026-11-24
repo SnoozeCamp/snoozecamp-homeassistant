@@ -10,9 +10,8 @@ the SnoozeCamp worker app) is required.
 
 ### HACS (recommended)
 
-1. HACS → ⋮ → **Custom repositories** → add `https://github.com/SnoozeCamp/snoozecamp-homeassistant`,
-   category **Integration**.
-2. Search for **SnoozeCamp**, install it and restart Home Assistant.
+1. In HACS, search for **SnoozeCamp**.
+2. Install it and restart Home Assistant.
 
 ### Manual
 
@@ -59,9 +58,7 @@ Changes arrive as a live stream, so states update within seconds after the worke
 SnoozeCamp hält die Standklimatisierung eines VW ID. über Nacht am Laufen. Diese Integration zeigt den
 Fahrzeugstand in Home Assistant und schaltet Klima, Camping und Laden (Laden ab Worker 1.5.1, Kabel muss stecken).
 
-- **Installation:** HACS → ⋮ → *Benutzerdefinierte Repositories* →
-  `https://github.com/SnoozeCamp/snoozecamp-homeassistant` (Kategorie *Integration*), installieren,
-  Home Assistant neu starten.
+- **Installation:** In HACS nach **SnoozeCamp** suchen, installieren, Home Assistant neu starten.
 - **Online:** URL `https://app.snoozecamp.com`, Token aus der SnoozeCamp-App (Einstellungen).
 - **Lokal im WLAN:** URL `http://IP-DES-HANDYS:8765`, Token aus dem Worker (Einstellungen → Home Assistant im
   WLAN). Unverschlüsselt, nur im eigenen Netz nutzen; dem Handy im Router eine feste IP geben.
