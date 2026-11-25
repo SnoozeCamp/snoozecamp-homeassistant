@@ -25,8 +25,14 @@ async def async_setup_entry(hass, entry, async_add_entities):
             return []
         return [SnoozeLockState(coordinator, _vehicle_id)]
 
+    def build_phone(vehicle_id, vehicle):
+        if (vehicle.get("worker") or {}).get("batteryPercent") is None:
+            return []
+        return [SnoozePhonePlugged(coordinator, vehicle_id)]
+
     listen_vehicles(coordinator, async_add_entities, build)
     listen_vehicles(coordinator, async_add_entities, build_lock)
+    listen_vehicles(coordinator, async_add_entities, build_phone)
 
 
 class SnoozeBinary(SnoozeEntity, BinarySensorEntity):
@@ -76,3 +82,17 @@ class SnoozeWorker(SnoozeEntity, BinarySensorEntity):
         if not worker:
             return None
         return bool(worker.get("online"))
+
+
+class SnoozePhonePlugged(SnoozeEntity, BinarySensorEntity):
+    """Whether the worker phone has power, even while it holds the charge at a limit."""
+
+    def __init__(self, coordinator, vehicle_id):
+        super().__init__(coordinator, vehicle_id, "phone_plugged")
+        self._attr_translation_key = "phone_plugged"
+        self._attr_device_class = BinarySensorDeviceClass.PLUG
+
+    @property
+    def is_on(self):
+        value = ((self.vehicle or {}).get("worker") or {}).get("pluggedIn")
+        return None if value is None else bool(value)

@@ -26,7 +26,14 @@ async def async_setup_entry(hass, entry, async_add_entities):
         entities.append(SnoozeTimeSensor(coordinator, vehicle_id, "read_at", "read_at", "readAt"))
         return entities
 
+    def build_phone(vehicle_id, vehicle):
+        # Appears once the worker shares its own battery (switch in the worker settings).
+        if (vehicle.get("worker") or {}).get("batteryPercent") is None:
+            return []
+        return [SnoozePhoneBattery(coordinator, vehicle_id)]
+
     listen_vehicles(coordinator, async_add_entities, build)
+    listen_vehicles(coordinator, async_add_entities, build_phone)
 
 
 class SnoozeSensor(SnoozeEntity, SensorEntity):
@@ -68,3 +75,23 @@ class SnoozeTimeSensor(SnoozeEntity, SensorEntity):
             camper = (self.vehicle or {}).get("camper") or {}
             raw = camper.get(self._field)
         return dt_util.parse_datetime(raw) if raw else None
+
+
+class SnoozePhoneBattery(SnoozeEntity, SensorEntity):
+    """Battery of the worker phone in the car, e.g. to switch its plug off at 80 %."""
+
+    def __init__(self, coordinator, vehicle_id):
+        super().__init__(coordinator, vehicle_id, "phone_battery")
+        self._attr_translation_key = "phone_battery"
+        self._attr_device_class = SensorDeviceClass.BATTERY
+        self._attr_native_unit_of_measurement = PERCENTAGE
+        self._attr_state_class = SensorStateClass.MEASUREMENT
+
+    @property
+    def native_value(self):
+        return ((self.vehicle or {}).get("worker") or {}).get("batteryPercent")
+
+    @property
+    def extra_state_attributes(self):
+        at = ((self.vehicle or {}).get("worker") or {}).get("batteryAt")
+        return {"read_at": at} if at else None

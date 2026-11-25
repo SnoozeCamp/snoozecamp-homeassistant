@@ -57,6 +57,9 @@
       },
       "read_at": {
         "name": "Letzter Stand"
+      },
+      "phone_battery": {
+        "name": "Handy-Akku"
       }
     },
     "binary_sensor": {
@@ -71,6 +74,9 @@
       },
       "locked": {
         "name": "Schloss"
+      },
+      "phone_plugged": {
+        "name": "Handy am Strom"
       }
     },
     "switch": {

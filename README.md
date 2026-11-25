@@ -36,11 +36,14 @@ You can add both modes; each vehicle then appears twice.
 
 | Type | Entities |
 |---|---|
-| Sensor | Range, battery, charge target, target temperature, climate time left, camping ends, last reading |
-| Binary sensor | Charging, climate running, worker online, lock (only for models whose VW app shows it) |
+| Sensor | Range, battery, charge target, target temperature, climate time left, camping ends, last reading, phone battery (*) |
+| Binary sensor | Charging, climate running, worker online, lock (only for models whose VW app shows it), phone on power (*) |
 | Switch | Climate (one run / stop), camping (duration in the integration options, default 8 hours), charging (start / stop, needs worker 1.5.1 and a plugged-in cable) |
 | Number | Target temperature |
 | Button | Read status now |
+
+(*) Battery of the worker phone itself, for example to switch its plug off at 80 % or to warn when it runs low.
+These appear once you switch on *Phone battery* in the worker settings (worker 1.5.2 or later).
 
 Locking and unlocking are not supported; the lock state is shown only.
 
@@ -62,4 +65,6 @@ Fahrzeugstand in Home Assistant und schaltet Klima, Camping und Laden (Laden ab 
 - **Online:** URL `https://app.snoozecamp.com`, Token aus der SnoozeCamp-App (Einstellungen).
 - **Lokal im WLAN:** URL `http://IP-DES-HANDYS:8765`, Token aus dem Worker (Einstellungen → Home Assistant im
   WLAN). Unverschlüsselt, nur im eigenen Netz nutzen; dem Handy im Router eine feste IP geben.
+- **Handy-Akku:** Im Worker unter Einstellungen → *Handy-Akku* einschalten (ab Worker 1.5.2). Dann gibt es die
+  Sensoren *Handy-Akku* und *Handy am Strom*, etwa um die Steckdose bei 80 % abzuschalten.
 - Ver- und Entriegeln gibt es nicht, der Schlosszustand wird nur angezeigt.

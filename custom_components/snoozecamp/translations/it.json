@@ -57,6 +57,9 @@
       },
       "read_at": {
         "name": "Ultima lettura"
+      },
+      "phone_battery": {
+        "name": "Batteria del telefono"
       }
     },
     "binary_sensor": {
@@ -71,6 +74,9 @@
       },
       "locked": {
         "name": "Serratura"
+      },
+      "phone_plugged": {
+        "name": "Telefono in carica"
       }
     },
     "switch": {

@@ -57,6 +57,9 @@
       },
       "read_at": {
         "name": "Última lectura"
+      },
+      "phone_battery": {
+        "name": "Batería del móvil"
       }
     },
     "binary_sensor": {
@@ -71,6 +74,9 @@
       },
       "locked": {
         "name": "Cerradura"
+      },
+      "phone_plugged": {
+        "name": "Móvil conectado a la corriente"
       }
     },
     "switch": {
